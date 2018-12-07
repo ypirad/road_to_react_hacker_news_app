@@ -1,3 +1,31 @@
+# The Road to Learn React (Or at Least One of Them)
+
+This repository aims to keep code, _i.e_ a Hacker News App, from the excellent
+_[The Road to Learn React book by Robin Wieruch](https://github.com/the-road-to-learn-react/the-road-to-learn-react)_
+under version control on the basis of the book's chapters and sections.
+
+Developers new to ReactJS and reading through Wieruch's book can go through this
+repository's log and checkout the state of the code at a particular commit to
+track their progress on the Hacker News App.
+
+Commit messages will specify which chapter and section the code pertains to.
+
+Consider that the first and second commits cover everything before the
+Introduction to JSX section in the first chapter, Introduction to React. _E.g._
+
+- __Chapter 1: Introduction to React__
+  - __A: Hi, My Name is React__
+  - __B: Requirements__
+  - __C: Installation__
+  - __D: Zero-Configuration Setup__
+  - E: Introduction to JSX
+  - ...
+
+This repository's code derives from the paperback version of _The Road to Learn
+React_ released between late 2017 to early 2018.
+
+## Vanilla Readme from the Tutorial Begins Here...
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
