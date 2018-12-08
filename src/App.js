@@ -3,7 +3,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    var helloWorld = 'Welcome to the Road to Learn React!';
+    const helloWorld = 'Welcome to the Road to Learn React!';
     return (
       <div className="App">
         <h2>{helloWorld}</h2>
