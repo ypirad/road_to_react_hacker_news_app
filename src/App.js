@@ -7,22 +7,24 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
 
-const isSearched = searchTerm => item =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase());
-
-const Search = ({ value, onChange, children }) =>
-      <form>
+const Search = ({ value, onChange, onSubmit, children }) =>
+      <form onSubmit={onSubmit}>
         {children}
         <input
           type="text"
           value={value}
           onChange={onChange}
         />
+        <Button
+          type="submit"
+        >
+          {children}
+        </Button>
       </form>;
 
-const Table = ({ list, pattern, onDismiss }) =>
+const Table = ({ list, onDismiss }) =>
       <div className="table">
-        {list.filter(isSearched(pattern)).map(
+        {list.map(
           item =>
             <div key={item.objectID} className="table-row">
               <span style={{ width: '40%' }}>
@@ -64,10 +66,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      // If the variable and state property share the same names, we can simply
-      // use the name by itself.
-      // I.e. "list" instead of "list: list"
-      //
       result: null,
       searchTerm: DEFAULT_QUERY,
     };
@@ -97,13 +95,22 @@ class App extends Component {
     this.setState({ result });
   }
 
-  componentDidMount = () => {
-    const { searchTerm } = this.state;
-
+  fetchSearchTopStories = searchTerm => {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(error => error);
+  }
+
+  componentDidMount = () => {
+    const { searchTerm } = this.state;
+    this.fetchSearchTopStories(searchTerm);
+  }
+
+  onSearchSubmit = event => {
+    const { searchTerm } = this.state;
+    this.fetchSearchTopStories(searchTerm);
+    event.preventDefault();
   }
 
   render() {
@@ -117,6 +124,7 @@ class App extends Component {
           <Search
             value={searchTerm}
             onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
           >
             Search
           </Search>
@@ -124,7 +132,6 @@ class App extends Component {
         { result &&
           <Table
             list={result.hits}
-            pattern={searchTerm}
             onDismiss={this.onDismiss}
           />
         }
