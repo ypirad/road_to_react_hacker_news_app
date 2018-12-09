@@ -32,10 +32,13 @@ class App extends Component {
       list: list,
     };
 
-    this.onDismiss = this.onDismiss.bind(this);
+    // this.onDismiss = this.onDismiss.bind(this);
+    // Using ES6 arrow functions will automatically bind class methods to the
+    // class instances, and we don't need to explicitly bind them in the class
+    // constructor.
   }
 
-  onDismiss(id) {
+  onDismiss = id => {
     const isNotId = item => item.objectID !== id;
     const updatedList = this.state.list.filter(isNotId);
     // Alternatively, the previous two lines can combine like so...
