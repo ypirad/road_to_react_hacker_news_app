@@ -60,6 +60,12 @@ class App extends Component {
                                <span>{item.points}</span>
                                <span>
                                  <button
+                             // It's important we bind a function,
+                             // i.e. defined below via ES6 arrow syntax,
+                             // to the onClick event instead of just the code
+                             // expression. Otherwise, the code gets evaluated
+                             // upon page load but not when clicking the
+                             // button.
                                    onClick={() => this.onDismiss(item.objectID)}
                                    type="button"
                                  >
