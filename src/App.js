@@ -25,6 +25,10 @@ class App extends Component {
     super(props);
 
     this.state = {
+      // If the variable and state property share the same names, we can simply
+      // use the name by itself.
+      // I.e. "list" instead of "list: list"
+      //
       list: list,
     };
   }
